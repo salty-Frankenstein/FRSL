@@ -1,4 +1,4 @@
 # FRSL
 Frankenstein's Structure Library
 
-Coding data structures in C++ to practise;
+Coding data structures in C++ for practising;~(^=_=^)~
