@@ -16,7 +16,6 @@ a stack structure has these functions as listed:
   pop_top():return top and then pop
   
 */
-using namespace std;
 class stack{
 	public:
 		void init(int max);
