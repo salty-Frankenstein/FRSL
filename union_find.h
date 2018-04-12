@@ -1,6 +1,5 @@
 #include<iostream>
 #include<malloc.h>
-using namespace std;
 
 struct node{
 	int father;
@@ -9,8 +8,8 @@ struct node{
 
 class union_find{
 	public:
-		void init(int max);
-		
+		union_find(int max);
+		~union_find(){}
 		int find(int x);
 	
 		void unite(int x,int y){
@@ -34,7 +33,7 @@ class union_find{
 		int *t;
 		struct node *set;
 };
-void union_find::init(int max){
+union_find::union_find(int max){
 	set=(struct node *)malloc(sizeof(struct node)*max);
 	t=(int *)malloc(sizeof(int)*max);
 	for(int i=0;i<max;i++){

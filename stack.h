@@ -5,22 +5,19 @@
 
 /*
 a stack structure has these functions as listed:
-  init(int maxsize)
   push(int an element)
   pop():pop the top
   prtop():print the top
   get_top():return the top
   make_empty()
   is_empty():return if the stack is empty
-  dispose()
   pop_top():return top and then pop
   
 */
-using namespace std;
 class stack{
 	public:
-		void init(int max);
-		
+		stack(int max);
+		~stack(){}
 		void push(int num);
 		
 		void pop(){
@@ -45,9 +42,6 @@ class stack{
 		bool is_empty(){
 			return top==0;
 		}
-		void dispose(){
-			free(data);
-		}
 		
 		int pop_top(){
 			if(!is_empty()){
@@ -63,7 +57,7 @@ class stack{
 			
 };
 
-void stack::init(int max){
+stack::stack(int max){
 	data=(int *)malloc(sizeof(int)*max);
 	top=0;
 }
