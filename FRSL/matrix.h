@@ -8,6 +8,7 @@
     fpr(*fout);	print the matrix in a file
     operator +	calculate a+b //matrix c=a+b;
     operator *  calculate a*b //matrix c=a*b;
+    operator -	matrix transpose c=a+(-b); 
     ele(i,j)	return the value of the element i,j
     elex(i,j,t)	replace the element i,j with t
     size(type)	return the row(or column) of this matrix 
@@ -75,6 +76,14 @@ class matrix{
 			}
 				return a;
 		}
+		matrix operator-(){
+			matrix a(n,m);
+			int i,j;
+			for(i=0;i<m;i++)
+				for(j=0;j<n;j++)
+					a.elex(j,i,data[i][j]);
+			return a;
+		}
 		double ele(int i,int j);
 		void elex(int i,int j,double t); 
 		int size(int type);
@@ -97,21 +106,21 @@ matrix::matrix(int a,int b){
 void matrix::init(){
 	int i,j;
 	for(i=0;i<m;i++)
-	  for(j=0;j<n;j++)
-	    scanf("%lf",&data[i][j]);
+		for(j=0;j<n;j++)
+	    	scanf("%lf",&data[i][j]);
 }
 
 void matrix::finit(FILE *fin){
 	int i,j;
 	for(i=0;i<m;i++)
-	  for(j=0;j<n;j++)
-	    fscanf(fin,"%lf",&data[i][j]);
+		for(j=0;j<n;j++)
+	    	fscanf(fin,"%lf",&data[i][j]);
 }
 
 void matrix::refinit(FILE *fin){
 	int i,j;
 	for(i=0;i<m;i++)    
-      free(data[i]);
+    	free(data[i]);
     free(data);
     int a,b;
     fscanf(fin,"%d%d",&a,&b);
@@ -121,16 +130,16 @@ void matrix::refinit(FILE *fin){
     for(i=0;i<m;i++)    
     	data[i]=(double*)malloc(sizeof(double)*n);
 	for(i=0;i<m;i++)
-	  for(j=0;j<n;j++)
-	    fscanf(fin,"%lf",&data[i][j]);
+		for(j=0;j<n;j++)
+			fscanf(fin,"%lf",&data[i][j]);
 }
 
 void matrix::pr(){
 	int i,j;
 	for(i=0;i<m;i++){
-	  for(j=0;j<n;j++)
-	    printf("%lf ",data[i][j]);
-	  printf("\n");
+		for(j=0;j<n;j++)
+	  		printf("%lf ",data[i][j]);
+	  	printf("\n");
 	}
 	printf("\n");
 }
@@ -138,9 +147,9 @@ void matrix::pr(){
 void matrix::fpr(FILE *fout){
 	int i,j;
 	for(i=0;i<m;i++){
-	  for(j=0;j<n;j++)
-	    fprintf(fout,"%lf ",data[i][j]);
-	  fprintf(fout,"\n");
+		for(j=0;j<n;j++)
+	    	fprintf(fout,"%lf ",data[i][j]);
+	  	fprintf(fout,"\n");
 	}
 	fprintf(fout,"\n");
 }
@@ -155,34 +164,34 @@ void matrix::elex(int i,int j,double t){
 
 int matrix::size(int type){
 	if(type==Row)
-	  return m;
+		return m;
 	if(type==Column)
-	  return n;
+		return n;
 }
 
 bool matrix::add(matrix b){
 	if(m!=b.size(Row)||n!=b.size(Column))
-	  return false;
+		return false;
 	int i,j;
 	for(i=0;i<m;i++)
-	  for(j=0;j<n;j++)
-	    data[i][j]+=b.ele(i,j);
+		for(j=0;j<n;j++)
+			data[i][j]+=b.ele(i,j);
 	return true;
 }
 
 matrix matrix::mul(matrix b){
 	matrix a(this->size(Row),b.size(Column));
 	if(this->size(Column)!=b.size(Row))
-	  return a;
+		return a;
 	int i,j,k;
 	double t;
 	for(i=0;i<a.size(Row);i++){
-	  for(j=0;j<b.size(Column);j++){
-	  	t=0;
-	  	for(k=0;k<this->size(Column);k++)
-	  	  t+=this->ele(i,k)*b.ele(k,j);
-	    a.elex(i,j,t);
-	  }
+		for(j=0;j<b.size(Column);j++){
+	  		t=0;
+	  		for(k=0;k<this->size(Column);k++)
+	  	  		t+=this->ele(i,k)*b.ele(k,j);
+	    	a.elex(i,j,t);
+	  	}
 	}
 	return a;
 }
