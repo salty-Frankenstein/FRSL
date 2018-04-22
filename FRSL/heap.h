@@ -1,3 +1,5 @@
+#ifndef HEAP_H
+#define HEAP_H
 #include<iostream>
 #include<malloc.h>
 const int inf=2147483647;
@@ -59,4 +61,5 @@ void heap::del(){
     data[last]=0;
     end--;
 }
+#endif
 

@@ -1,7 +1,3 @@
-#include<iostream>
-#include<cstdio>
-#include<cstdlib>
-#include<malloc.h>
 
 /*
 a stack structure has these functions as listed:
@@ -14,6 +10,13 @@ a stack structure has these functions as listed:
   pop_top():return top and then pop
   
 */
+#ifndef STACK_H
+#define STACK_H
+#include<iostream>
+#include<cstdio>
+#include<cstdlib>
+#include<malloc.h>
+
 class stack{
 	public:
 		stack(int max);
@@ -66,3 +69,4 @@ void stack::push(int num){
 	data[top]=num;
 	top++;
 }
+#endif

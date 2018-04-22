@@ -1,3 +1,5 @@
+#ifndef UNION_FIND_H
+#define UNION_FIND_H
 #include<iostream>
 #include<malloc.h>
 
@@ -53,3 +55,4 @@ int union_find::find(int x){
         set[t[i]].father=x; 
     return x;
 }
+#endif
